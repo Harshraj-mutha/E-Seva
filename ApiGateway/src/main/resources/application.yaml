@@ -1,0 +1,24 @@
+server:
+  port: 8067
+
+spring:
+  application:
+    name: apigateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL}
+      
+jwt:
+  secret: mySuperSecretKeyForJWT12345678901234567890
+  expiration: 86400000
+      
