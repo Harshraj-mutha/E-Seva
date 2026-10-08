@@ -33,6 +33,7 @@ public class ProductService {
 	}
 	
 	public ProductResponseDto getProduct(int id) {
+		System.out.println("Received product ID: " + id);
 		Product product = productRepo.getReferenceById(id);
 		return modelMapper.map(product,ProductResponseDto.class);		
 		
