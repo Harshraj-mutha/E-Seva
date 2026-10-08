@@ -24,8 +24,6 @@ public class CorrelationIdFilter extends OncePerRequestFilter {
 		if (header == null || header.isEmpty()) {
 			header = UUID.randomUUID().toString();
 		}
-
-		System.out.println("E-Correlation-Id : " + header);
 		MDC.put(CORRELATION_ID, header);
 
 		try {

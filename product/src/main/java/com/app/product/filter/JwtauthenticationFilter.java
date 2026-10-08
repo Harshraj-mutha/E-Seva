@@ -27,13 +27,11 @@ public class JwtauthenticationFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		System.out.println("in product jwt filter");
 		String authHeader = request.getHeader("Authorization");
 		if(authHeader ==null || !authHeader.startsWith("Bearer ")) {
 			System.out.println("no token found");
 			return;
 		}
-		System.out.println("token found");
 		String token = authHeader.substring(7);
 		
 		if(!jwtUtils.validateToken(token)) {
@@ -50,7 +48,6 @@ public class JwtauthenticationFilter extends OncePerRequestFilter {
             );
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        System.out.println("calling next filter");
 		 filterChain.doFilter(request, response);
 		
 		

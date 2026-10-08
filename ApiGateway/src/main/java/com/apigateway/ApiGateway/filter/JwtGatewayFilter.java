@@ -9,10 +9,13 @@ import org.springframework.web.server.ServerWebExchange;
 
 import com.apigateway.ApiGateway.utils.JwtUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.HttpHeaders;
 import reactor.core.publisher.Mono;
 
 @Component
+@Slf4j
 public class JwtGatewayFilter implements GlobalFilter,Ordered {
 
 	private JwtUtils jwtUtils;	
@@ -25,13 +28,11 @@ public class JwtGatewayFilter implements GlobalFilter,Ordered {
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-		System.out.println("In JwtGatewayFilter method");
 		String path = exchange.getRequest().getURI().getPath();
-		System.out.println(path);
+		log.info("path = "+path);
 		if (path.startsWith("/auth-service/api/auth")) {
             return chain.filter(exchange);
         }
-		System.out.println("endpoint is not global");
 		String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
 		if(authHeader==null || !authHeader.startsWith("Bearer ")) {
 			exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
@@ -43,7 +44,6 @@ public class JwtGatewayFilter implements GlobalFilter,Ordered {
 			exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
 			return exchange.getResponse().setComplete();
 		}
-		System.out.println(" JwtGatewayFilter method end ");
 		return chain.filter(exchange);
 	}
 	
