@@ -83,3 +83,9 @@ services:
       EUREKA_SERVER_URL: http://eureka-server:8761/eureka/
     ports:
       - "8084:8084" 
+      
+  redis:
+    image: redis:7.2
+    container_name: redis
+    ports:
+      - "6379:6379"     

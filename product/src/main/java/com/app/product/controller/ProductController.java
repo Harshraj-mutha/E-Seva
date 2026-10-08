@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,11 @@ public class ProductController {
 	@GetMapping("/{id}")
 	public ResponseEntity<ProductResponseDto> getProduct(@PathVariable int id){
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(productService.getProduct(id));
+	}
+	
+	@PutMapping
+	public ResponseEntity<ProductResponseDto> updateProduct(@Valid @RequestBody ProductRequestDto product){
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(productService.UpdateProduct(product));
 	}
 	
 	

@@ -1,0 +1,35 @@
+# Maven
+**/target/
+**/build/
+
+# Eclipse
+.classpath
+.project
+.settings/
+.factorypath
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment / secrets
+.env
+.env.*
+application-local.yml
+application-local.yaml
+
+# Spring Boot generated files
+**/target/
+
+# Maven wrapper generated files
+*.lastUpdated
